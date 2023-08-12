@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"time"
+	"strings"
 )
 
 const delay = 700 * time.Millisecond
@@ -16,7 +17,18 @@ func print(msg string) {
 // slowDown takes the given string and repeats its characters
 // according to their index in the string.
 func slowDown(msg string) {
-	panic("NOT IMPLEMENTED")
+	words := strings.Split(msg, " ")
+
+	for _, word := range words {
+		var toPrint []string
+
+		for index, char := range word {
+			repeat := strings.Repeat(string(char), index + 1)
+			toPrint = append(toPrint, repeat)
+		}
+
+		print(strings.Join(toPrint, ""))
+	}
 }
 
 func main() {
